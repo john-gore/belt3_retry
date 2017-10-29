@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <title>Add Review</title>
+        {% load static %}
+    </head>
+    <style>
+        body {
+            padding:3%;
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    input {
+        margin: 1%;
+        padding: 1% 2%;
+    }
+    </style>
+    <body>
+        <div id="wrapper">
+            <a href="{% url 'first_app:index' %}">Logout</a>
+            <h1>Welcome,{{ user.alias }}!</h1>
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <P>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="recent">
+            <h3>Here is a list of your friends!</h3>
+            <table>
+                <tr>
+                    <td>Alias</td>
+                    <td>Action</td>
+                </tr>
+                {% for alias in aliases %}
+                <tr>
+                    <td>{{ alias.alias }}</td>
+                    <td><a href="{% url 'first_app:profile' id=alias.id %}">View Profile</a></td>
+                    <td><a href="{% url 'first_app:removedfriend' id=alias.id %}">Remove as Friend</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+            <div class="other">
+                <h3>Other Users not on your friends list:</h3>
+                <table>
+                        <tr>
+                            <td>Alias</td>
+                            <td>Action</td>
+                        </tr>
+                        {% for friend in friends %}
+                        <tr>
+                            <td><a href="{% url 'first_app:profile' id=friend.id %}">{{ friend.alias }}</a></td>
+                            <td><a href="{% url 'first_app:addedfriend' id=friend.id %}">Add to as friend!</a></td>
+                            </td>
+                        </tr>     
+                        {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

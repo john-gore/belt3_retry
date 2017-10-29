@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <title>Items</title>
+        <style>
+            body {
+            padding:3%;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            
+        }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    input {
+        margin: 1%;
+        padding: 1% 2%;
+    }
+        </style>
+    </head>
+    <body>
+        <a href="{% url 'first_app:success' %}">Home</a>
+        <a href="{% url 'first_app:index' %}">Logout</a>
+        <h1> {{ profile.alias }}</h1>
+        <p>Name: {{ profile.name }}</p>
+        <p>Email: {{ profile.email }}</p>
+        <p>Date Born: {{ profile.date }}</p>
+    </body>
+</html>
